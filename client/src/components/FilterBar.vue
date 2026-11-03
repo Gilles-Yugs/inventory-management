@@ -121,9 +121,11 @@ export default {
 
 .filters-grid {
   display: flex;
+  flex-wrap: wrap; /* the content column is narrower now that the sidebar takes space */
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem 1rem;
   flex: 1;
+  min-width: 0;
 }
 
 .filter-group {
@@ -190,5 +192,28 @@ export default {
 .reset-filters-btn svg {
   width: 18px;
   height: 18px;
+}
+
+/* Phones: stack filters full width; drop stickiness so four rows do not cover the page */
+@media (max-width: 640px) {
+  .filters-bar {
+    position: static;
+  }
+
+  .filters-container {
+    padding: 0 1rem;
+    align-items: flex-start;
+  }
+
+  .filter-group {
+    flex: 1 1 100%;
+    justify-content: space-between;
+  }
+
+  .filter-select {
+    min-width: 0;
+    flex: 1;
+    max-width: 65%;
+  }
 }
 </style>

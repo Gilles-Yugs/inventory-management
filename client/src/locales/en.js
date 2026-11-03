@@ -6,6 +6,13 @@ export default {
     orders: 'Orders',
     finance: 'Finance',
     demandForecast: 'Demand Forecast',
+    restocking: 'Restocking',
+    reports: 'Reports',
+    mainNavigation: 'Main navigation',
+    openMenu: 'Open navigation menu',
+    closeMenu: 'Close navigation menu',
+    collapseSidebar: 'Collapse sidebar',
+    expandSidebar: 'Expand sidebar',
     companyName: 'Catalyst Components',
     subtitle: 'Inventory Management System'
   },
@@ -112,7 +119,15 @@ export default {
     onTimeDelivery: 'On-Time Delivery',
     itemsCount: '{count} items',
     quantity: 'Qty',
+    unitCost: 'Unit cost',
+    submittedOrders: 'Submitted Orders',
+    noSubmittedOrders: 'No restocking orders have been submitted yet.',
+    submittedOrdersError: 'Failed to load submitted orders',
+    days: '{count} days',
     table: {
+      totalCost: 'Total Cost',
+      submittedDate: 'Submitted',
+      leadTime: 'Lead Time',
       orderNumber: 'Order Number',
       orderId: 'Order ID',
       orderDate: 'Order Date',
@@ -188,6 +203,40 @@ export default {
     }
   },
 
+  // Restocking
+  restocking: {
+    title: 'Restocking',
+    description: 'Set a budget and place a restocking order for items with forecasted demand growth',
+    budgetLabel: 'Restocking budget',
+    budgetHelp: 'Move the slider to set a budget. Recommended items are selected automatically, largest demand gap first. You can adjust the selection and quantities before placing the order.',
+    budgetMax: 'Cost to cover every gap',
+    recommendedItems: 'Recommended Items',
+    selectedOfTotal: '{selected} of {total} selected',
+    table: {
+      select: 'Select',
+      item: 'Item',
+      gap: 'Forecast Gap',
+      unitCost: 'Unit Cost',
+      quantity: 'Quantity',
+      lineTotal: 'Line Total',
+      supplier: 'Supplier',
+      leadTime: 'Lead Time'
+    },
+    selectedItems: 'Selected Items',
+    totalCost: 'Total Cost',
+    remainingBudget: 'Remaining Budget',
+    overBudget: 'Over budget by {amount}',
+    longestLeadTime: 'Longest Lead Time',
+    placeOrder: 'Place Order',
+    placing: 'Placing order...',
+    invalidQuantity: 'Enter a whole number of 1 or more',
+    success: 'Order {orderNumber} submitted. Expected delivery: {date}.',
+    error: 'Failed to place the order. Please try again.',
+    loadError: 'Failed to load restocking data',
+    empty: 'No items need restocking based on the current demand forecast.',
+    days: '{count} days'
+  },
+
   // Filters
   filters: {
     timePeriod: 'Time Period',
@@ -204,6 +253,7 @@ export default {
     shipped: 'Shipped',
     processing: 'Processing',
     backordered: 'Backordered',
+    submitted: 'Submitted',
     inStock: 'In Stock',
     lowStock: 'Low Stock',
     adequate: 'Adequate'

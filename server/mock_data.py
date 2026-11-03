@@ -35,5 +35,22 @@ recent_transactions = load_json_file('transactions.json')
 # Load purchase orders
 purchase_orders = load_json_file('purchase_orders.json')
 
-# All data is now loaded from JSON files in the data/ directory
+# Restocking orders are the only dataset the API writes to. Tests point
+# RESTOCKING_ORDERS_PATH at a temp file so they never touch the tracked JSON.
+RESTOCKING_ORDERS_PATH = os.path.join(DATA_DIR, 'restocking_orders.json')
+restocking_orders = load_json_file('restocking_orders.json')
+
+def save_restocking_orders():
+    """Persist restocking_orders to disk.
+
+    Writes to a temp file in the same directory and swaps it in with os.replace
+    (atomic on the same filesystem), so a crash mid-write cannot leave a
+    truncated JSON file that would break the next server start.
+    """
+    tmp_path = RESTOCKING_ORDERS_PATH + '.tmp'
+    with open(tmp_path, 'w') as f:
+        json.dump(restocking_orders, f, indent=2)
+    os.replace(tmp_path, RESTOCKING_ORDERS_PATH)
+
+# All other data is loaded from JSON files in the data/ directory
 # This allows for easier maintenance and updates of the sample data

@@ -6,6 +6,13 @@ export default {
     orders: '注文',
     finance: '財務',
     demandForecast: '需要予測',
+    restocking: '補充発注',
+    reports: 'レポート',
+    mainNavigation: 'メインナビゲーション',
+    openMenu: 'ナビゲーションメニューを開く',
+    closeMenu: 'ナビゲーションメニューを閉じる',
+    collapseSidebar: 'サイドバーを折りたたむ',
+    expandSidebar: 'サイドバーを展開',
     companyName: '触媒コンポーネンツ',
     subtitle: '在庫管理システム'
   },
@@ -112,7 +119,15 @@ export default {
     onTimeDelivery: '定時配達',
     itemsCount: '{count}件',
     quantity: '数量',
+    unitCost: '単価',
+    submittedOrders: '送信済み注文',
+    noSubmittedOrders: '送信済みの補充発注はまだありません。',
+    submittedOrdersError: '送信済み注文の読み込みに失敗しました',
+    days: '{count}日',
     table: {
+      totalCost: '合計コスト',
+      submittedDate: '送信日',
+      leadTime: 'リードタイム',
       orderNumber: '注文番号',
       orderId: '注文ID',
       orderDate: '注文日',
@@ -188,6 +203,40 @@ export default {
     }
   },
 
+  // Restocking
+  restocking: {
+    title: '補充発注',
+    description: '予算を設定し、需要増加が予測される品目の補充発注を行います',
+    budgetLabel: '補充予算',
+    budgetHelp: 'スライダーで予算を設定します。推奨品目は需要ギャップの大きい順に自動選択されます。発注前に選択内容と数量を調整できます。',
+    budgetMax: 'すべてのギャップを補う費用',
+    recommendedItems: '推奨品目',
+    selectedOfTotal: '{total}件中{selected}件を選択',
+    table: {
+      select: '選択',
+      item: '品目',
+      gap: '予測ギャップ',
+      unitCost: '単価',
+      quantity: '数量',
+      lineTotal: '小計',
+      supplier: '仕入先',
+      leadTime: 'リードタイム'
+    },
+    selectedItems: '選択品目数',
+    totalCost: '合計コスト',
+    remainingBudget: '残り予算',
+    overBudget: '予算を{amount}超過',
+    longestLeadTime: '最長リードタイム',
+    placeOrder: '発注する',
+    placing: '発注中...',
+    invalidQuantity: '1以上の整数を入力してください',
+    success: '注文 {orderNumber} を送信しました。配達予定日: {date}',
+    error: '発注に失敗しました。もう一度お試しください。',
+    loadError: '補充発注データの読み込みに失敗しました',
+    empty: '現在の需要予測では補充が必要な品目はありません。',
+    days: '{count}日'
+  },
+
   // Filters
   filters: {
     timePeriod: '期間',
@@ -204,6 +253,7 @@ export default {
     shipped: '出荷済み',
     processing: '処理中',
     backordered: 'バックオーダー',
+    submitted: '送信済み',
     inStock: '在庫あり',
     lowStock: '在庫僅少',
     adequate: '適量'

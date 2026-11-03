@@ -22,6 +22,24 @@ def client():
 
 
 @pytest.fixture
+def isolated_restocking(monkeypatch, tmp_path):
+    """Redirect restocking order persistence to a temp file.
+
+    POST /api/restocking-orders writes to a tracked JSON file, so tests that
+    submit orders must use this fixture to avoid dirtying the repo and leaking
+    orders between tests.
+    """
+    import mock_data
+
+    monkeypatch.setattr(mock_data, "RESTOCKING_ORDERS_PATH", str(tmp_path / "restocking_orders.json"))
+    # Clear in place: main.py holds a reference to this same list object
+    saved = list(mock_data.restocking_orders)
+    mock_data.restocking_orders.clear()
+    yield mock_data.restocking_orders
+    mock_data.restocking_orders[:] = saved
+
+
+@pytest.fixture
 def sample_inventory_item():
     """Sample inventory item for testing."""
     return {
