@@ -361,6 +361,44 @@ export default {
     selectLanguage: '言語を選択'
   },
 
+  // Reports
+  reports: {
+    title: 'パフォーマンスレポート',
+    description: '四半期ごとの業績指標と月次トレンドを表示します',
+    loading: 'レポートを読み込み中...',
+    error: 'レポートの読み込みに失敗しました。もう一度お試しください。',
+    noValue: '-',
+    notAvailable: 'N/A',
+    quarterLabel: '{year}年 第{quarter}四半期',
+    quarterly: {
+      title: '四半期パフォーマンス',
+      empty: '選択したフィルターに該当する四半期データがありません',
+      quarter: '四半期',
+      totalOrders: '総注文数',
+      totalRevenue: '総売上',
+      avgOrderValue: '平均注文額',
+      fulfillmentRate: '出荷達成率'
+    },
+    monthly: {
+      chartTitle: '月次売上推移',
+      momTitle: '前月比分析',
+      empty: '選択したフィルターに該当する月次データがありません',
+      month: '月',
+      orders: '注文数',
+      revenue: '売上',
+      change: '増減額',
+      growthRate: '成長率',
+      barLabel: '{month}: {revenue}',
+      chartAriaLabel: '月次売上の棒グラフ: {first}から{last}までの{count}か月。最高売上は{peakMonth}の{peak}です。'
+    },
+    stats: {
+      totalRevenue: '総売上',
+      avgMonthlyRevenue: '月平均売上',
+      totalOrders: '総注文数',
+      bestQuarter: '最高業績の四半期'
+    }
+  },
+
   // Common
   common: {
     loading: '読み込み中...',

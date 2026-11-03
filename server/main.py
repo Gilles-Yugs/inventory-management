@@ -324,24 +324,33 @@ def get_recent_transactions():
     """Get recent transactions"""
     return recent_transactions
 
+def quarter_label(order_date: str) -> Optional[str]:
+    """Return a label like 'Q3-2025' for an ISO date string, or None if it cannot be parsed"""
+    try:
+        parsed = datetime.fromisoformat(order_date)
+    except (TypeError, ValueError):
+        return None
+    return f"Q{(parsed.month - 1) // 3 + 1}-{parsed.year}"
+
 @app.get("/api/reports/quarterly")
-def get_quarterly_reports():
-    """Get quarterly performance reports"""
+def get_quarterly_reports(
+    warehouse: Optional[str] = None,
+    category: Optional[str] = None,
+    status: Optional[str] = None,
+    month: Optional[str] = None
+):
+    """Get quarterly performance reports with optional filtering"""
     # Calculate quarterly statistics from orders
     quarters = {}
 
-    for order in orders:
-        order_date = order.get('order_date', '')
-        # Determine quarter
-        if '2025-01' in order_date or '2025-02' in order_date or '2025-03' in order_date:
-            quarter = 'Q1-2025'
-        elif '2025-04' in order_date or '2025-05' in order_date or '2025-06' in order_date:
-            quarter = 'Q2-2025'
-        elif '2025-07' in order_date or '2025-08' in order_date or '2025-09' in order_date:
-            quarter = 'Q3-2025'
-        elif '2025-10' in order_date or '2025-11' in order_date or '2025-12' in order_date:
-            quarter = 'Q4-2025'
-        else:
+    filtered_orders = apply_filters(orders, warehouse, category, status)
+    filtered_orders = filter_by_month(filtered_orders, month)
+
+    for order in filtered_orders:
+        # Derive the quarter from the parsed date instead of matching month strings,
+        # so orders from any year are grouped and malformed dates are skipped
+        quarter = quarter_label(order.get('order_date', ''))
+        if not quarter:
             continue
 
         if quarter not in quarters:
@@ -371,11 +380,19 @@ def get_quarterly_reports():
     return result
 
 @app.get("/api/reports/monthly-trends")
-def get_monthly_trends():
-    """Get month-over-month trends"""
+def get_monthly_trends(
+    warehouse: Optional[str] = None,
+    category: Optional[str] = None,
+    status: Optional[str] = None,
+    month: Optional[str] = None
+):
+    """Get month-over-month trends with optional filtering"""
     months = {}
 
-    for order in orders:
+    filtered_orders = apply_filters(orders, warehouse, category, status)
+    filtered_orders = filter_by_month(filtered_orders, month)
+
+    for order in filtered_orders:
         order_date = order.get('order_date', '')
         if not order_date:
             continue

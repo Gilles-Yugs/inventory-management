@@ -361,6 +361,44 @@ export default {
     selectLanguage: 'Select Language'
   },
 
+  // Reports
+  reports: {
+    title: 'Performance Reports',
+    description: 'View quarterly performance metrics and monthly trends',
+    loading: 'Loading reports...',
+    error: 'Failed to load reports. Please try again.',
+    noValue: '-',
+    notAvailable: 'N/A',
+    quarterLabel: 'Q{quarter} {year}',
+    quarterly: {
+      title: 'Quarterly Performance',
+      empty: 'No quarterly data for the selected filters',
+      quarter: 'Quarter',
+      totalOrders: 'Total Orders',
+      totalRevenue: 'Total Revenue',
+      avgOrderValue: 'Avg Order Value',
+      fulfillmentRate: 'Fulfillment Rate'
+    },
+    monthly: {
+      chartTitle: 'Monthly Revenue Trend',
+      momTitle: 'Month-over-Month Analysis',
+      empty: 'No monthly data for the selected filters',
+      month: 'Month',
+      orders: 'Orders',
+      revenue: 'Revenue',
+      change: 'Change',
+      growthRate: 'Growth Rate',
+      barLabel: '{month}: {revenue}',
+      chartAriaLabel: 'Bar chart of monthly revenue: {count} months from {first} to {last}. Highest revenue is {peak} in {peakMonth}.'
+    },
+    stats: {
+      totalRevenue: 'Total Revenue',
+      avgMonthlyRevenue: 'Avg Monthly Revenue',
+      totalOrders: 'Total Orders',
+      bestQuarter: 'Best Performing Quarter'
+    }
+  },
+
   // Common
   common: {
     loading: 'Loading...',
